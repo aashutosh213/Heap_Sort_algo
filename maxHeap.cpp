@@ -58,7 +58,13 @@ int main(){
     print(vec);
     int n =vec.size();
 
-    for(int i{(n/2)-1};i>=0;i--){
+    for(int i{(n/2)-1};i>=0;i--){ // here i starts from n/2 -1 because
+    // if we start i from anywhere before it the conditional loops within 
+    //the function maxHeapify wont pass them since the the childern are 2i+1 & 2i+2 
+    //and on input of suppose n/2 we will get value of childern as 
+    //2(n/2)+1 and 2(n/2)+2 i.e. n+1 and n+2 which are already
+    // out of range of vector and the first place that would access 
+    //the childern would be n/2-1 childerns as n-1 and n
         maxHeapify(vec,i);
     }
 
