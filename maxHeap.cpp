@@ -33,22 +33,22 @@ void print(vector<int> vec){
     cout << "------------------------------"<<endl;
 }
 
-void maxHeapify(vector<int> &vec, int i){
+void maxHeapify(vector<int> &vec,int hSize, int i){
     int left = Left(i);//(2*i+1)
     int right = Right(i);//(2*i + 2)
     int largest = i;
     
-    if(left<vec.size() && vec.at(left)> vec.at(largest))
+    if(left<hSize && vec.at(left)> vec.at(largest))
         largest = left;
     
-    if(right < vec.size() && vec.at(right)> vec.at(largest))
+    if(right < hSize && vec.at(right)> vec.at(largest))
         largest= right;
     
 
     if(largest != i){
         swap(vec.at(largest), vec.at(i));
         // cout<< vec.at(largest) << ": vec at largest" <<endl;
-        maxHeapify(vec,largest);
+        maxHeapify(vec,hSize,largest);
     }
     // cout<< largest<< " : largest" << endl;
 }
@@ -58,6 +58,8 @@ int main(){
     print(vec);
     int n =vec.size();
 
+    int heapSize = n;
+
     for(int i{(n/2)-1};i>=0;i--){ // here i starts from n/2 -1 because
     // if we start i from anywhere before it the conditional loops within 
     //the function maxHeapify wont pass them since the the childern are 2i+1 & 2i+2 
@@ -65,7 +67,7 @@ int main(){
     //2(n/2)+1 and 2(n/2)+2 i.e. n+1 and n+2 which are already
     // out of range of vector and the first place that would access 
     //the childern would be n/2-1 childerns as n-1 and n
-        maxHeapify(vec,i);
+        maxHeapify(vec,heapSize,i);
     }
 
     print(vec);
