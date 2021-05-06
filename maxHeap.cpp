@@ -4,7 +4,7 @@
 using namespace std;
 
 int Parent(int i){
-    return i>>1;   // left bit shift : i<<1 ~~ i/2
+    return (i-1)>>1;   // left bit shift : i<<1 ~~ i/2
 }
 
 int Right(int i){
